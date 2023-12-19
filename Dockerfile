@@ -12,7 +12,7 @@ RUN apt-get update \
 
 # Set the working directory for the Laravel app
 WORKDIR /var/www
-COPY /workspace/* /var/www
+COPY . /var/www
 
 RUN ls -al .
 RUN ls -al /
