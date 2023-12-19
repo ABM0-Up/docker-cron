@@ -14,7 +14,9 @@ RUN apt-get update \
 WORKDIR /var/www
 
 # Copy the Laravel app into the container
-COPY /workspace /var/www
+COPY . /var/www
+RUN ls -al /var/www
+RUN ls -al /
 
 # Install the Laravel app dependencies
 RUN composer install
