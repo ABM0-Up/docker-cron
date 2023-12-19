@@ -10,5 +10,5 @@ RUN apt-get update \
     # Install Composer
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
-RUN ls -al .
-RUN ls -al /workspace
+RUN pwd
+RUN ls -al ../
