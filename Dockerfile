@@ -11,10 +11,10 @@ RUN apt-get update \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set the working directory for the Laravel app
-WORKDIR /var/www
+WORKDIR /workspace
 
 # Copy the Laravel app into the container
-COPY /workspace /var/www
+COPY . /var/www
 
 # Install the Laravel app dependencies
 RUN composer install
