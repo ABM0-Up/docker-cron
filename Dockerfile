@@ -15,5 +15,4 @@ WORKDIR /var/www
 COPY . /var/www
 
 RUN ls -al .
-RUN ls -al /
-RUN ls -al /var/www
+RUN ls -al /workspace
