@@ -11,30 +11,9 @@ RUN apt-get update \
     && curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 # Set the working directory for the Laravel app
-WORKDIR /workspace
+WORKDIR /var/www
+COPY /workspace/* /var/www
 
-# Copy the Laravel app into the container
-COPY . /var/www
-
-# Install the Laravel app dependencies
-RUN composer install
-
-# Set proper permissions for the storage and bootstrap/cache directories
-RUN chown -R www-data:www-data /var/www/storage /var/www/bootstrap/cache \
-    && chmod -R 755 /var/www/storage /var/www/bootstrap/cache
-
-# Copy the crontab file and entrypoint script into the container
-COPY crontab /hello-cron
-COPY entrypoint.sh /entrypoint.sh
-
-# Install the crontab and make the entrypoint script executable
-RUN crontab /hello-cron \
-    && chmod +x /entrypoint.sh
-
-# Run the entrypoint script
-ENTRYPOINT ["/entrypoint.sh"]
-
-# https://manpages.ubuntu.com/manpages/trusty/man8/cron.8.html
-# -f | Stay in foreground mode, don't daemonize.
-# -L loglevel | Tell  cron  what to log about jobs (errors are logged regardless of this value) as the sum of the following values:
-CMD ["cron", "-f", "-L", "2"]
+RUN ls -al .
+RUN ls -al /
+RUN ls -al /var/www
